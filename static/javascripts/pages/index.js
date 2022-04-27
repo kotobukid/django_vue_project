@@ -14,20 +14,54 @@
 /*!*********************!*\
   !*** ./ts/index.ts ***!
   \*********************/
-/***/ (() => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
-eval("\nalert('ts/index.ts > /static/javascripts/pages/index.jsからこんにちは');\n\n\n//# sourceURL=webpack://django_vue_project/./ts/index.ts?");
+eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nvar sub_1 = __importDefault(__webpack_require__(/*! ./lib/sub */ \"./ts/lib/sub.ts\"));\nalert('ts/index.ts > /static/javascripts/pages/index.jsからこんにちは');\n(0, sub_1.default)('taro');\n\n\n//# sourceURL=webpack://django_vue_project/./ts/index.ts?");
+
+/***/ }),
+
+/***/ "./ts/lib/sub.ts":
+/*!***********************!*\
+  !*** ./ts/lib/sub.ts ***!
+  \***********************/
+/***/ ((__unused_webpack_module, exports) => {
+
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nvar hoge = function (name) {\n    alert(\"hello \".concat(name));\n};\nexports[\"default\"] = hoge;\n\n\n//# sourceURL=webpack://django_vue_project/./ts/lib/sub.ts?");
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./ts/index.ts"]();
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__("./ts/index.ts");
 /******/ 	
 /******/ })()
 ;
