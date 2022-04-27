@@ -6,7 +6,7 @@
                 g(transform="translate(20, -390)")
                     path.sequence_fill(:d="price_sequence_fill")
                     path.sequence(:d="price_sequence")
-                    circle.snap(v-for="(h, $index) in price_history" :cx="$index * 10" :cy="tax_computed(h.price, h.tax_rate)" r="3")
+                    price-circle(v-for="(h, $index) in price_history" :index="$index" :price="h.price" :tax_rate="h.tax_rate")
                     line.horizon(x1="-20" y1="0" x2="1600" y2="0")
 </template>
 
@@ -16,9 +16,11 @@ import {Prop, Vue} from "vue-property-decorator";
 import TaxCalc from "./tax_calc.vue";
 import _ from 'lodash';
 import {calc_tax} from "../lib/sub";
+import PriceCircle from "./price_circle.vue";
 
 @Component({
     components: {
+        'price-circle': PriceCircle,
         'tax-calc': TaxCalc
     }
 })
@@ -27,7 +29,7 @@ class PriceProgression extends Vue {
     price_history: { tax_rate: number, price: number }[] = [];
 
     get price_sequence(): string {
-        return _.map(this.price_history, (h: {tax_rate: number, price: number}, index: number) => {
+        return _.map(this.price_history, (h: { tax_rate: number, price: number }, index: number) => {
             if (index === 0) {
                 return `M ${10 * index},${calc_tax(h.price, h.tax_rate)}`;
             } else {
@@ -57,13 +59,6 @@ export default PriceProgression;
 svg.chart {
     border: 1px solid grey;
     background-color: white;
-
-    circle.snap {
-        fill: lightblue;
-        stroke: blue;
-        stroke-width: 1px;
-        vector-effect: non-scaling-stroke;
-    }
 
     line.horizon {
         stroke-width: 1px;
