@@ -1,5 +1,6 @@
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
+import json
 
 
 def index(request):
@@ -16,6 +17,11 @@ def save_prices(request):
             "reason": "HttpメソッドがGETです(POSTでリクエストを発行してください)"
         })
     else:
+        body = json.loads(request.body)
+
+        for p in body["prices"]:
+            print(p)
+
         return JsonResponse({
             "success": True,
             "reason": ""
