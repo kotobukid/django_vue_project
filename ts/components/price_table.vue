@@ -1,19 +1,23 @@
 <template lang="pug">
-    table
-        colgroup
-            col(style="width: 100px;")
-            col(style="width: 100px;")
-            col(style="width: 100px;")
-        thead
-            tr
-                th 価格
-                th 税率
-                th 計算結果
-        tbody
-            tr(v-for="h in price_history")
-                td(v-text="h.price")
-                td(v-text="h.tax_rate")
-                td(v-text="price_computed(h)")
+    .outer_frame(style="max-height: 400px;")
+        table
+            colgroup
+                col(style="width: 100px;")
+                col(style="width: 100px;")
+                col(style="width: 100px;")
+            thead
+                tr
+                    th 価格
+                    th 税率
+                    th 計算結果
+            tbody(v-if="price_history.length > 0")
+                tr(v-for="h in price_history")
+                    td(v-text="h.price")
+                    td(v-text="h.tax_rate")
+                    td(v-text="price_computed(h)")
+            tbody(v-else)
+                tr
+                    td(colspan="3") 価格履歴がありません
 
 </template>
 
@@ -46,4 +50,7 @@ export default PriceTable;
 </script>
 
 <style scoped lang="less">
+.outer_frame {
+    overflow-y: scroll;
+}
 </style>
