@@ -53,7 +53,7 @@ class PriceTable extends Vue {
     }
 
     make_active(index: number): void {
-        this.$emit('make-active', index);
+        this.$store.commit('set-active-index', index);
     }
 
     get message(): string {

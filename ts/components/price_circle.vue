@@ -47,7 +47,7 @@ class PriceCircle extends Vue {
 
     p_enter() {
         this.show_tips = true;
-        this.$emit('make-active', this.index);
+        this.$store.commit('set-active-index', this.index);
     }
 
     p_leave() {

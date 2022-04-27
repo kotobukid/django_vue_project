@@ -7,13 +7,11 @@
             .left(style="width: 800px; margin-right: 10px;")
                 svg-graph(
                     :price_history="price_history"
-                    @make-active="make_active"
                     :active="active_index"
                 )
             .left(style="width: 800px;")
                 price-table(
                     :price_history="price_history"
-                    @make-active="make_active"
                     :active="active_index"
                 )
 </template>
@@ -46,10 +44,6 @@ class PriceProgression extends Vue {
     get active_index(): number {
         return this.$store.getters['active_index'];
     };
-
-    make_active(index: number): void {
-        this.$store.commit('set-active-index', index);
-    }
 
     get message(): string {
         return this.$store.getters['message'];

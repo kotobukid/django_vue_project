@@ -13,7 +13,6 @@
                         :index="$index"
                         :price="h.price" :tax_rate="h.tax_rate"
                         :is_active="active === $index"
-                        @make-active="make_active"
                     )
                 line.horizon(x1="-20" y1="0" x2="1600" y2="0")
 </template>
@@ -54,10 +53,6 @@ class SvgGraph extends Vue {
 
     get price_sequence_fill(): string {
         return `${this.price_sequence}  V 0 H 0 Z`;
-    }
-
-    make_active(index: number): void {
-        this.$emit('make-active', index);
     }
 }
 
