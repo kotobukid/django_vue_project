@@ -1,5 +1,5 @@
 <template lang="pug">
-    svg.chart(width="1600" height="400" viewBox="0 0 1600 400")
+    svg.chart(width="800" height="400" viewBox="0 0 800 400")
         g(transform="scale(1, -1)")
             g(transform="translate(20, -390)")
                 line.horizon_sub(x1="-20" y1="100" x2="1600" y2="100")

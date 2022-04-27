@@ -1,7 +1,9 @@
 <template lang="pug">
     .price_progression
-        tax-calc(@register-snapshot="register_snapshot")
-        svg-graph(:price_history="price_history")
+        .wrapper
+            tax-calc(@register-snapshot="register_snapshot")
+        .wrapper
+            svg-graph(:price_history="price_history")
 </template>
 
 <script lang="ts">
@@ -31,4 +33,11 @@ export default PriceProgression;
 </script>
 
 <style scoped lang="less">
+.price_progression {
+    padding-top: 10px;
+}
+.wrapper {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
 </style>
