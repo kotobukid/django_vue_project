@@ -1,6 +1,9 @@
 <template lang="pug">
     .price_progression
         tax-calc(@register-snapshot="register_snapshot")
+        br
+        ul
+            li(v-for="his in price_history") {{ his }}
 </template>
 
 <script lang="ts">
@@ -15,9 +18,10 @@ import TaxCalc from "./tax_calc.vue";
 })
 class PriceProgression extends Vue {
 
-    register_snapshot(info: { tax_rate: number, price: number }): void {
-        console.log(info);
+    price_history: { tax_rate: number, price: number }[] = []
 
+    register_snapshot(info: { tax_rate: number, price: number }): void {
+        this.price_history.push(info);
     }
 }
 
