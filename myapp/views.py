@@ -17,5 +17,6 @@ def save_prices(request):
         })
     else:
         return JsonResponse({
-            "success": True
+            "success": True,
+            "reason": ""
         })
