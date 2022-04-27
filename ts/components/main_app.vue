@@ -48,6 +48,21 @@ export default MainApp;
 .main_app {
     font-size: 2rem;
 
+    label {
+        margin: 5px;
+        display: inline-block;
+    }
+
+    .total {
+        display: block;
+        width: 300px;
+        text-align: center;
+        border: 1px solid grey;
+        border-radius: 5px;
+        padding: 5px;
+        margin: 5px;
+    }
+
     input[type="number"] {
         font-size: 2.5rem;
         width: 120px;
