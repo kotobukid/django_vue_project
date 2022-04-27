@@ -1,9 +1,9 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.template import loader
 
 
 def index(request):
-    html = '<html><body><div id="root">{{ message }}</div></body>' \
-           '<script src="/static/main.js"></script>' \
-           '<script src="/static/javascripts/pages/index.js"></script>' \
-           '</html>'
-    return HttpResponse(html)
+    template = loader.get_template('index.html')
+    context = {
+    }
+    return HttpResponse(template.render(context, request))

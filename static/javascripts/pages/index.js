@@ -16,7 +16,7 @@
   \*********************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
-eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nvar vue_1 = __importDefault(__webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\"));\nvar vm = new vue_1.default({\n    data: function () {\n        return { message: 'Vueからこんにちは' };\n    }\n}).$mount('#root');\n\n\n//# sourceURL=webpack://django_vue_project/./ts/index.ts?");
+eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nvar vue_1 = __importDefault(__webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\"));\nwindow.onload = function () {\n    console.log(document.getElementById('root'));\n    var vm = new vue_1.default({\n        data: function () {\n            return { message: 'Vueからこんにちは' };\n        }\n    }).$mount('#root');\n};\n\n\n//# sourceURL=webpack://django_vue_project/./ts/index.ts?");
 
 /***/ }),
 
