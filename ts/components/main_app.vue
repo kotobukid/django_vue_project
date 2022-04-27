@@ -8,6 +8,7 @@
             span 税率:&nbsp;
             input(type="number" v-model.number="tax_rate")
             span %
+            a.button(href="#" @click.prevent="reset_tax_rate") リセット
         hr
         span.total
             span 計算結果:&nbsp;
@@ -30,6 +31,10 @@ class MainApp extends Vue {
 
     get total(): number {
         return Math.round(this.price * ((100 + this.tax_rate) / 100));
+    }
+
+    reset_tax_rate(): void {
+        this.tax_rate = 0;
     }
 }
 
