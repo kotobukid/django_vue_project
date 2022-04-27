@@ -4,7 +4,8 @@ import {PriceAndTax} from "../types";
 const root_store = new Vuex.Store({
     state: {
         message: 'message_from Vuex store',
-        price_history: [] as PriceAndTax[]
+        price_history: [] as PriceAndTax[],
+        active_index: -1
     },
     mutations: {
         'set-message'(state, message: string): void {
@@ -12,6 +13,9 @@ const root_store = new Vuex.Store({
         },
         'append-price-history'(state, info: PriceAndTax): void {
             state.price_history = [...state.price_history, info];
+        },
+        'set-active-index'(state, index: number): void {
+            state.active_index = index;
         }
     },
     getters: {
@@ -20,6 +24,9 @@ const root_store = new Vuex.Store({
         },
         price_history(state): PriceAndTax[] {
             return state.price_history;
+        },
+        active_index(state): number {
+            return state.active_index;
         }
     },
 });

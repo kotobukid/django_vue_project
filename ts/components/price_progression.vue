@@ -43,10 +43,12 @@ class PriceProgression extends Vue {
         this.$store.commit('append-price-history', info);
     }
 
-    active_index: number = -1;
+    get active_index(): number {
+        return this.$store.getters['active_index'];
+    };
 
     make_active(index: number): void {
-        this.active_index = index;
+        this.$store.commit('set-active-index', index);
     }
 
     get message(): string {
