@@ -22,6 +22,7 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import {Prop, Vue} from "vue-property-decorator";
+import {calc_tax} from "../lib/sub";
 
 @Component({
     components: {}
@@ -34,7 +35,7 @@ class TaxCalc extends Vue {
     tax_rate: number = 10;
 
     get total(): number {
-        return Math.round(this.price * ((100 + this.tax_rate) / 100));
+        return calc_tax(this.price, this.tax_rate);
     }
 
     set_tax_rate(rate: number): void {

@@ -6,7 +6,7 @@
                 g(transform="translate(20, -390)")
                     path.sequence_fill(:d="price_sequence_fill")
                     path.sequence(:d="price_sequence")
-                    circle.snap(v-for="(h, $index) in price_history" :cx="$index * 10" :cy="Math.round(h.price * ((100 + h.tax_rate) / 100))" r="3")
+                    circle.snap(v-for="(h, $index) in price_history" :cx="$index * 10" :cy="tax_computed(h.price, h.tax_rate)" r="3")
                     line.horizon(x1="-20" y1="0" x2="1600" y2="0")
 </template>
 
@@ -15,6 +15,7 @@ import Component from "vue-class-component";
 import {Prop, Vue} from "vue-property-decorator";
 import TaxCalc from "./tax_calc.vue";
 import _ from 'lodash';
+import {calc_tax} from "../lib/sub";
 
 @Component({
     components: {
@@ -28,11 +29,15 @@ class PriceProgression extends Vue {
     get price_sequence(): string {
         return _.map(this.price_history, (h: {tax_rate: number, price: number}, index: number) => {
             if (index === 0) {
-                return `M ${10 * index},${Math.round(h.price * ((100 + h.tax_rate) / 100))}`;
+                return `M ${10 * index},${calc_tax(h.price, h.tax_rate)}`;
             } else {
-                return `L ${10 * index},${Math.round(h.price * ((100 + h.tax_rate) / 100))}`
+                return `L ${10 * index},${calc_tax(h.price, h.tax_rate)}`
             }
         }).join(' ');
+    }
+
+    get tax_computed(): Function {
+        return calc_tax;
     }
 
     get price_sequence_fill(): string {

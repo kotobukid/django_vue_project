@@ -1,6 +1,8 @@
-const hoge = (name: string) => {
-    alert(`hello ${name}`);
-}
+const calc_tax = (price: number, tax_rate: number): number => {
+    return Math.round(price * ((100 + tax_rate) / 100));
+};
 
 
-export default hoge;
+export {
+    calc_tax
+};
