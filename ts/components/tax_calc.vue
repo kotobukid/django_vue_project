@@ -1,5 +1,5 @@
 <template lang="pug">
-    .main_app
+    .tax_calc
         label
             span 価格:&nbsp;
             input(type="number" v-model.number="price")
@@ -25,7 +25,7 @@ import {Prop, Vue} from "vue-property-decorator";
 @Component({
     components: {}
 })
-class MainApp extends Vue {
+class TaxCalc extends Vue {
     // @Prop({default: ''})
     // readonly message_from_parent!: string;
 
@@ -41,14 +41,14 @@ class MainApp extends Vue {
     }
 }
 
-export default MainApp;
+export default TaxCalc;
 
 </script>
 
 <style scoped lang="less">
 @import "../../less/button";
 
-.main_app {
+.tax_calc {
     font-size: 2rem;
 
     label {
