@@ -2,3 +2,4 @@
 *.pyc
 db.sqlite3
 node_modules
+static/javascripts/pages/*.js
