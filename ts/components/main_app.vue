@@ -1,5 +1,7 @@
 <template>
-    <div class="main_app">{{ message_from_parent }}</div>
+    <div class="main_app">
+        <span class="message">{{ message_from_parent }}</span>
+    </div>
 </template>
 
 <script lang="ts">
@@ -18,8 +20,10 @@ export default MainApp;
 
 </script>
 
-<style>
+<style lang="less">
 .main_app {
-    font-size: 2rem;
+    span.message {
+        font-size: 2rem;
+    }
 }
 </style>
