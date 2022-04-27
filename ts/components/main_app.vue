@@ -8,7 +8,7 @@
             span 税率:&nbsp;
             input(type="number" v-model.number="tax_rate")
             span %
-            a.button(href="#" @click.prevent="reset_tax_rate") リセット
+            a.button.reset_tax(href="#" @click.prevent="reset_tax_rate") リセット
         hr
         span.total
             span 計算結果:&nbsp;
@@ -43,6 +43,8 @@ export default MainApp;
 </script>
 
 <style scoped lang="less">
+@import "../../less/button";
+
 .main_app {
     font-size: 2rem;
 
@@ -55,28 +57,11 @@ export default MainApp;
         color: blue;
     }
 
-    .button {
-        border: 1px solid grey;
-        border-radius: 4px;
-        display: inline-block;
-        font-size: 1rem;
-        line-height: 1rem;
-        cursor: pointer;
-        text-decoration: none;
-        color: black;
-        background-color: white;
-        text-align: center;
-
-        &:active {
-            position: relative;
-            top: 1px;
-        }
-
-        margin: 0 3px 0 0;
-        padding: 4px;
-        &:last-child {
-            margin-right: 0;
-        }
+    .reset_tax {
+        .button();
+        background-color: pink;
+        border-color: red;
+        color: red;
     }
 }
 </style>
