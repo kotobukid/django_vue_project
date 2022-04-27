@@ -20,7 +20,7 @@ export default MainApp;
 
 </script>
 
-<style lang="less">
+<style scoped lang="less">
 .main_app {
     span.message {
         font-size: 2rem;
