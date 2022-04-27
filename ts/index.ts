@@ -32,6 +32,19 @@ window.onload = () => {
             methods: {
                 set_app(app_name: AppName): void {
                     this.active_app = app_name;
+                    const $title = document.getElementsByTagName('title')!;
+ 
+                    switch (app_name) {
+                        case 'price':
+                            $title[0].innerText = '価格';
+                            break;
+                        case 'file':
+                            $title[0].innerText = 'ファイル';
+                            break;
+                        default:
+                            $title[0].innerText = '??';
+                            break;
+                    }
                 }
             },
             store: root_store
