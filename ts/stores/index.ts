@@ -2,6 +2,9 @@ import Vuex from 'vuex';
 import {PriceAndTax} from "../types";
 import axios, {AxiosResponse} from 'axios';
 
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+
 const root_store = new Vuex.Store({
     state: {
         price_history: [] as PriceAndTax[],
