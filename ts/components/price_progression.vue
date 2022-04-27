@@ -6,6 +6,7 @@
             .left(style="width: 800px; margin-right: 10px;")
                 svg-graph(
                     :price_history="price_history"
+                    @make-active="make_active"
                     :active="active_index"
                 )
             .left(style="width: 800px;")
