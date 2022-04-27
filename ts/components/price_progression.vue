@@ -1,6 +1,6 @@
 <template lang="pug">
     .price_progression
-        tax-calc
+        tax-calc(@register-snapshot="register_snapshot")
 </template>
 
 <script lang="ts">
@@ -14,6 +14,11 @@ import TaxCalc from "./tax_calc.vue";
     }
 })
 class PriceProgression extends Vue {
+
+    register_snapshot(info: { tax_rate: number, price: number }): void {
+        console.log(info);
+
+    }
 }
 
 export default PriceProgression;

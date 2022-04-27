@@ -12,10 +12,11 @@
             a.button.reset_tax(href="#" @click.prevent="set_tax_rate(0)") リセット
             a.button.reset_tax(href="#" @click.prevent="set_tax_rate(8)") 8%
             a.button.reset_tax(href="#" @click.prevent="set_tax_rate(10)") 10%
-        hr
         span.total
             span 計算結果:&nbsp;
             span(v-text="total")
+        .actions
+            a.button.register_snapshot(href="#" @click.prevent="register_snapshot") 登録
 </template>
 
 <script lang="ts">
@@ -39,6 +40,13 @@ class TaxCalc extends Vue {
     set_tax_rate(rate: number): void {
         this.tax_rate = rate;
     }
+
+    register_snapshot(): void {
+        this.$emit('register-snapshot', {
+            tax_rate: this.tax_rate,
+            price: this.price
+        });
+    }
 }
 
 export default TaxCalc;
@@ -50,6 +58,8 @@ export default TaxCalc;
 
 .tax_calc {
     font-size: 2rem;
+    background-color: #e5ffe9;
+    padding: 10px;
 
     label {
         margin: 5px;
@@ -84,6 +94,13 @@ export default TaxCalc;
         background-color: pink;
         border-color: red;
         color: red;
+    }
+
+    .register_snapshot {
+        .button();
+        background-color: lightgreen;
+        border-color: green;
+        color: green;
     }
 }
 </style>
