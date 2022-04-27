@@ -7,8 +7,11 @@
         label
             span 税率:&nbsp;
             input(type="number" v-model.number="tax_rate")
+            span %
         hr
-        span.total(v-text="Math.round(price * ((100 + tax_rate) / 100))")
+        span.total
+            span 計算結果:&nbsp;
+            span(v-text="total")
 </template>
 
 <script lang="ts">
@@ -24,6 +27,10 @@ class MainApp extends Vue {
 
     price: number = 100;
     tax_rate: number = 10;
+
+    get total(): number {
+        return Math.round(this.price * ((100 + this.tax_rate) / 100));
+    }
 }
 
 export default MainApp;
@@ -36,6 +43,11 @@ export default MainApp;
 
     input[type="number"] {
         font-size: 2.5rem;
+        width: 120px;
+    }
+
+    span.total {
+        color: blue;
     }
 }
 </style>
