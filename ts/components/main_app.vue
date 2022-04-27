@@ -1,7 +1,8 @@
-<template>
-    <div class="main_app">
-        <span class="message">{{ message_from_parent }}</span>
-    </div>
+<template lang="pug">
+    .main_app
+        span.message {{ message_from_parent }}
+        br
+        span.message {{ message_from_parent }}
 </template>
 
 <script lang="ts">
