@@ -11,7 +11,7 @@
         <a href="#" class="button tab_head" @click.prevent="set_app('file')">ファイル</a>
     </div>
     <price-progression v-if="active_app === 'price'"></price-progression>
-    <div v-if="active_app === 'file'">ファイル(ダミー)</div>
+    <file-checker v-if="active_app === 'file'"></file-checker>
 </div>
 </body>
 </html>
