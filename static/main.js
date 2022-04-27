@@ -1,0 +1,1 @@
+alert('/static/main.jsからこんにちは');
