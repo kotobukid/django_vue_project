@@ -5,6 +5,7 @@
             g(transform="scale(1, -1)")
                 g(transform="translate(20, -390)")
                     line.horizon(x1="-20" y1="0" x2="1600" y2="0")
+                    path.sequence(:d="price_sequence")
                     circle.snap(v-for="(h, $index) in price_history" :cx="$index * 10" :cy="Math.round(h.price * ((100 + h.tax_rate) / 100))" r="3")
 </template>
 
@@ -12,6 +13,7 @@
 import Component from "vue-class-component";
 import {Prop, Vue} from "vue-property-decorator";
 import TaxCalc from "./tax_calc.vue";
+import _ from 'lodash';
 
 @Component({
     components: {
@@ -20,7 +22,18 @@ import TaxCalc from "./tax_calc.vue";
 })
 class PriceProgression extends Vue {
 
-    price_history: { tax_rate: number, price: number }[] = []
+    price_history: { tax_rate: number, price: number }[] = [];
+
+    get price_sequence(): string {
+        return _.map(this.price_history, (h: {tax_rate: number, price: number}, index: number) => {
+            if (index === 0) {
+                return `M ${10 * index},${Math.round(h.price * ((100 + h.tax_rate) / 100))}`;
+            } else {
+                return `L ${10 * index},${Math.round(h.price * ((100 + h.tax_rate) / 100))}`
+            }
+
+        }).join(' ');
+    }
 
     register_snapshot(info: { tax_rate: number, price: number }): void {
         this.price_history.push(info);
@@ -46,6 +59,13 @@ svg.chart {
     line.horizon {
         stroke-width: 1px;
         stroke: black;
+        fill: none;
+        vector-effect: non-scaling-stroke;
+    }
+
+    path.sequence {
+        stroke-width: 1px;
+        stroke: blue;
         fill: none;
         vector-effect: non-scaling-stroke;
     }
