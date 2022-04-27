@@ -2,11 +2,12 @@
     .price_progression
         tax-calc(@register-snapshot="register_snapshot")
         svg.chart(width="1600" height="400" viewBox="0 0 1600 400")
-            g(transform="scale(1, -1)")
+            g(transform="scale(1, -1)" v-if="price_history.length > 0")
                 g(transform="translate(20, -390)")
-                    line.horizon(x1="-20" y1="0" x2="1600" y2="0")
+                    path.sequence_fill(:d="price_sequence_fill")
                     path.sequence(:d="price_sequence")
                     circle.snap(v-for="(h, $index) in price_history" :cx="$index * 10" :cy="Math.round(h.price * ((100 + h.tax_rate) / 100))" r="3")
+                    line.horizon(x1="-20" y1="0" x2="1600" y2="0")
 </template>
 
 <script lang="ts">
@@ -31,8 +32,11 @@ class PriceProgression extends Vue {
             } else {
                 return `L ${10 * index},${Math.round(h.price * ((100 + h.tax_rate) / 100))}`
             }
-
         }).join(' ');
+    }
+
+    get price_sequence_fill(): string {
+        return `${this.price_sequence}  V 0 H 0 Z`;
     }
 
     register_snapshot(info: { tax_rate: number, price: number }): void {
@@ -68,6 +72,12 @@ svg.chart {
         stroke: blue;
         fill: none;
         vector-effect: non-scaling-stroke;
+    }
+
+    path.sequence_fill {
+        stroke-width: 0;
+        stroke: none;
+        fill: lightblue;
     }
 }
 </style>
