@@ -1,0 +1,27 @@
+#navbar {
+    background-color: black;
+    color: white;
+    padding: 5px 0;
+
+    .belt {
+        margin-left: 10px;
+    }
+
+    a {
+        color: white;
+        display: inline-block;
+        text-decoration: none;
+
+        &:hover {
+            color: lightgreen;
+            text-decoration: underline;
+        }
+    }
+
+    span.sep {
+        &:after {
+            margin: 0 5px;
+            content: '|';
+        }
+    }
+}

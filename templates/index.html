@@ -8,8 +8,11 @@
 <body>
 <div id="root">
     <div id="navbar">
-        <a href="#" class="button tab_head" @click.prevent="set_app('price')">価格推移</a>
-        <a href="#" class="button tab_head" @click.prevent="set_app('file')">ファイル</a>
+        <div class="belt">
+            <a href="#" class="button tab_head" @click.prevent="set_app('price')">価格推移</a>
+            <span class="sep"></span>
+            <a href="#" class="button tab_head" @click.prevent="set_app('file')">ファイル</a>
+        </div>
     </div>
     <price-progression v-if="active_app === 'price'"></price-progression>
     <file-checker v-if="active_app === 'file'"></file-checker>

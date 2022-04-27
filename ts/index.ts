@@ -8,6 +8,7 @@ Vue.use(Vuex);
 import root_store from './stores';
 
 require('../less/common.less');
+require('../less/index.less');
 
 declare type AppName = 'price' | 'file';
 
