@@ -11,6 +11,9 @@ const root_store = new Vuex.Store({
         active_index: -1
     },
     mutations: {
+        'replace-price-history'(state, history: PriceAndTax[]): void {
+            state.price_history = history;
+        },
         'append-price-history'(state, info: PriceAndTax): void {
             state.price_history = [...state.price_history, info];
         },

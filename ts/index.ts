@@ -14,7 +14,9 @@ declare type AppName = 'price' | 'file';
 window.onload = () => {
     axios.get('/fetch_prices.json').then((result: AxiosResponse<{ price_history: { pk: number, source: string }[] }>) => {
 
-        console.log(result.data.price_history);
+        if (result.data.price_history.length > 0) {
+            root_store.commit('replace-price-history', JSON.parse(result.data.price_history[0].source));
+        }
 
         const vm = new Vue({
             components: {
