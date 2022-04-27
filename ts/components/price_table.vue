@@ -11,7 +11,11 @@
                     th 税率
                     th 計算結果
             tbody(v-if="price_history.length > 0")
-                tr(v-for="h in price_history")
+                tr(
+                    v-for="(h, $index) in price_history"
+                    @pointerenter="make_active($index)"
+                    :class="active === $index ? 'active': ''"
+                )
                     td(v-text="h.price")
                     td(v-text="h.tax_rate")
                     td(v-text="price_computed(h)")
@@ -38,10 +42,17 @@ class PriceTable extends Vue {
     @Prop({default: []})
     readonly price_history!: PriceAndTax[];
 
+    @Prop({default: -1})
+    readonly active!: number;
+
     get price_computed(): Function {
         return (p: PriceAndTax) => {
             return calc_tax(p.price, p.tax_rate);
         };
+    }
+
+    make_active(index: number): void {
+        this.$emit('make-active', index);
     }
 }
 
@@ -52,5 +63,11 @@ export default PriceTable;
 <style scoped lang="less">
 .outer_frame {
     overflow-y: scroll;
+}
+
+tr.active {
+    td {
+        background-color: pink;
+    }
 }
 </style>

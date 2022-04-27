@@ -8,7 +8,12 @@
                 g.data(v-if="price_history.length > 0")
                     path.sequence_fill(:d="price_sequence_fill")
                     path.sequence(:d="price_sequence")
-                    price-circle(v-for="(h, $index) in price_history" :index="$index" :price="h.price" :tax_rate="h.tax_rate")
+                    price-circle(
+                        v-for="(h, $index) in price_history"
+                        :index="$index"
+                        :price="h.price" :tax_rate="h.tax_rate"
+                        :is_active="active === $index"
+                    )
                 line.horizon(x1="-20" y1="0" x2="1600" y2="0")
 </template>
 
@@ -28,6 +33,9 @@ import {PriceAndTax} from "../types";
 class SvgGraph extends Vue {
     @Prop({default: []})
     readonly price_history!: PriceAndTax[];
+
+    @Prop({default: -1})
+    readonly active!: number;
 
     get price_sequence(): string {
         return _.map(this.price_history, (h: PriceAndTax, index: number) => {

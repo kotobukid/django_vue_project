@@ -2,6 +2,7 @@
     g.snap(
         @pointerenter="p_enter"
         @pointerleave="p_leave"
+        :class="is_active ? 'active': ''"
     )
         circle.snap(:cx="index * 10" :cy="tax_computed" r="3")
         g.tip(:transform="tip_translate" v-if="show_tips")
@@ -31,6 +32,9 @@ class PriceCircle extends Vue {
     @Prop({default: 0})
     readonly tax_rate!: number;
 
+    @Prop({default: false})
+    readonly is_active!: boolean;
+
     get tax_computed(): number {
         return calc_tax(this.price, this.tax_rate);
     }
@@ -57,10 +61,18 @@ export default PriceCircle;
 <style scoped lang="less">
 
 circle.snap {
-    fill: lightblue;
-    stroke: red;
     stroke-width: 1px;
     vector-effect: non-scaling-stroke;
+
+    fill: lightblue;
+    stroke: blue;
+    transition: 0.5s;
+
+    .active & {
+        stroke-width: 3px;
+        fill: pink;
+        stroke: red;
+    }
 }
 
 g.tip {

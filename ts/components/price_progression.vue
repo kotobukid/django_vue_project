@@ -4,9 +4,16 @@
             tax-calc(@register-snapshot="register_snapshot")
         .wrapper(style="width: 1610px;")
             .left(style="width: 800px; margin-right: 10px;")
-                svg-graph(:price_history="price_history")
+                svg-graph(
+                    :price_history="price_history"
+                    :active="active_index"
+                )
             .left(style="width: 800px;")
-                price-table(:price_history="price_history")
+                price-table(
+                    :price_history="price_history"
+                    @make-active="make_active"
+                    :active="active_index"
+                )
 </template>
 
 <script lang="ts">
@@ -30,6 +37,12 @@ class PriceProgression extends Vue {
 
     register_snapshot(info: PriceAndTax): void {
         this.price_history.push(info);
+    }
+
+    active_index: number = -1;
+
+    make_active(index: number): void {
+        this.active_index = index;
     }
 }
 
