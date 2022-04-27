@@ -65,6 +65,7 @@ circle.snap {
 
 g.tip {
     pointer-events: none;
+    user-select: none;
 }
 
 text {

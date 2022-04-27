@@ -2,11 +2,15 @@
     .price_progression
         tax-calc(@register-snapshot="register_snapshot")
         svg.chart(width="1600" height="400" viewBox="0 0 1600 400")
-            g(transform="scale(1, -1)" v-if="price_history.length > 0")
+            g(transform="scale(1, -1)")
                 g(transform="translate(20, -390)")
-                    path.sequence_fill(:d="price_sequence_fill")
-                    path.sequence(:d="price_sequence")
-                    price-circle(v-for="(h, $index) in price_history" :index="$index" :price="h.price" :tax_rate="h.tax_rate")
+                    line.horizon_sub(x1="-20" y1="100" x2="1600" y2="100")
+                    line.horizon_sub(x1="-20" y1="200" x2="1600" y2="200")
+                    line.horizon_sub(x1="-20" y1="300" x2="1600" y2="300")
+                    g.data(v-if="price_history.length > 0")
+                        path.sequence_fill(:d="price_sequence_fill")
+                        path.sequence(:d="price_sequence")
+                        price-circle(v-for="(h, $index) in price_history" :index="$index" :price="h.price" :tax_rate="h.tax_rate")
                     line.horizon(x1="-20" y1="0" x2="1600" y2="0")
 </template>
 
@@ -67,6 +71,13 @@ svg.chart {
         vector-effect: non-scaling-stroke;
     }
 
+    line.horizon_sub {
+        stroke-width: 1px;
+        stroke: grey;
+        fill: none;
+        vector-effect: non-scaling-stroke;
+    }
+
     path.sequence {
         stroke-width: 1px;
         stroke: blue;
@@ -78,6 +89,7 @@ svg.chart {
         stroke-width: 0;
         stroke: none;
         fill: lightblue;
+        opacity: 0.5;
     }
 }
 </style>
