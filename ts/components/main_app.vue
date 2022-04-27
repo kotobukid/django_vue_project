@@ -8,7 +8,10 @@
             span 税率:&nbsp;
             input(type="number" v-model.number="tax_rate")
             span %
-            a.button.reset_tax(href="#" @click.prevent="reset_tax_rate") リセット
+        .actions
+            a.button.reset_tax(href="#" @click.prevent="set_tax_rate(0)") リセット
+            a.button.reset_tax(href="#" @click.prevent="set_tax_rate(8)") 8%
+            a.button.reset_tax(href="#" @click.prevent="set_tax_rate(10)") 10%
         hr
         span.total
             span 計算結果:&nbsp;
@@ -33,8 +36,8 @@ class MainApp extends Vue {
         return Math.round(this.price * ((100 + this.tax_rate) / 100));
     }
 
-    reset_tax_rate(): void {
-        this.tax_rate = 0;
+    set_tax_rate(rate: number): void {
+        this.tax_rate = rate;
     }
 }
 
@@ -60,6 +63,10 @@ export default MainApp;
         border: 1px solid grey;
         border-radius: 5px;
         padding: 5px;
+        margin: 5px;
+    }
+
+    .actions {
         margin: 5px;
     }
 
