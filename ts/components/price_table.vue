@@ -80,6 +80,8 @@ export default PriceTable;
 </script>
 
 <style scoped lang="less">
+@import "../../less/button";
+
 .outer_frame {
     overflow-y: scroll;
 }
@@ -89,4 +91,23 @@ tr.active {
         background-color: pink;
     }
 }
+
+.actions {
+    margin-bottom: 5px;
+
+    .save {
+        .button();
+        background-color: lightgreen;
+        color: green;
+        border-color: green;
+    }
+
+    .discard_and_save {
+        .button();
+        background-color: pink;
+        color: red;
+        border-color: red;
+    }
+}
+
 </style>
