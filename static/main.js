@@ -1,1 +1,1 @@
-alert('/static/main.jsからこんにちは');
+// alert('/static/main.jsからこんにちは');

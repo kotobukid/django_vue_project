@@ -1,3 +1,9 @@
+import Vue from 'vue';
 import hoge from './lib/sub';
-alert('ts/index.ts > /static/javascripts/pages/index.jsからこんにちは');
-hoge('taro');
+
+
+const vm = new Vue({
+    data: () => {
+        return {message: 'Vueからこんにちは'}
+    }
+}).$mount('#root')
