@@ -9,6 +9,7 @@ import Component from "vue-class-component";
 import {Prop, Vue} from "vue-property-decorator";
 import TaxCalc from "./tax_calc.vue";
 import SvgGraph from "./svg_graph.vue";
+import {PriceAndTax} from "../types";
 
 @Component({
     components: {
@@ -20,7 +21,7 @@ class PriceProgression extends Vue {
 
     price_history: { tax_rate: number, price: number }[] = [];
 
-    register_snapshot(info: { tax_rate: number, price: number }): void {
+    register_snapshot(info: PriceAndTax): void {
         this.price_history.push(info);
     }
 }

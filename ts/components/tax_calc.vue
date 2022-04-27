@@ -23,6 +23,7 @@
 import Component from "vue-class-component";
 import {Prop, Vue} from "vue-property-decorator";
 import {calc_tax} from "../lib/sub";
+import {PriceAndTax} from "../types";
 
 @Component({
     components: {}
@@ -43,10 +44,12 @@ class TaxCalc extends Vue {
     }
 
     register_snapshot(): void {
-        this.$emit('register-snapshot', {
+        const info: PriceAndTax = {
             tax_rate: this.tax_rate,
             price: this.price
-        });
+        };
+
+        this.$emit('register-snapshot', info);
     }
 }
 
