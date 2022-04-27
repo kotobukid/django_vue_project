@@ -17,12 +17,13 @@ const root_store = new Vuex.Store({
     },
     actions: {
         save(store): void {
-            axios.post('/save_prices.json', {prices: store.state.price_history}).then((result: AxiosResponse<{ success: boolean }>) => {
+            axios.get('/save_prices.json', {params: {prices: store.state.price_history}}).then((result: AxiosResponse<{ success: boolean, reason: string }>) => {
+            // axios.post('/save_prices.json', {prices: store.state.price_history}).then((result: AxiosResponse<{ success: boolean }>) => {
                 console.log(result.data.success);
                 if (result.data.success) {
                     alert('保存しました');
                 } else {
-                    alert('保存に失敗しました');
+                    alert('保存に失敗しました\n' + result.data.reason);
                 }
             });
         }

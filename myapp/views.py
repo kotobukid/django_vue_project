@@ -7,3 +7,15 @@ def index(request):
     context = {
     }
     return HttpResponse(template.render(context, request))
+
+
+def save_prices(request):
+    if request.method == 'GET':
+        return JsonResponse({
+            "success": False,
+            "reason": "HttpメソッドがGETです(POSTでリクエストを発行してください)"
+        })
+    else:
+        return JsonResponse({
+            "success": True
+        })
