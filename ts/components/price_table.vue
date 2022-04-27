@@ -1,5 +1,6 @@
 <template lang="pug">
     .outer_frame(style="max-height: 400px;")
+        span {{ message }}
         table
             colgroup
                 col(style="width: 100px;")
@@ -53,6 +54,10 @@ class PriceTable extends Vue {
 
     make_active(index: number): void {
         this.$emit('make-active', index);
+    }
+
+    get message(): string {
+        return this.$store.getters['message'];
     }
 }
 

@@ -1,5 +1,6 @@
 <template lang="pug">
     .price_progression
+        span {{ message }}
         .wrapper
             tax-calc(@register-snapshot="register_snapshot")
         .wrapper(style="width: 1610px;")
@@ -44,6 +45,10 @@ class PriceProgression extends Vue {
 
     make_active(index: number): void {
         this.active_index = index;
+    }
+
+    get message(): string {
+        return this.$store.getters['message'];
     }
 }
 
