@@ -2,6 +2,7 @@
     .outer_frame(style="max-height: 400px;")
         .actions
             a.button.save(href="#" @click.prevent="save") 保存
+            a.button.discard_and_save(href="#" @click.prevent="discard_and_save") 破棄して保存
         table
             colgroup
                 col(style="width: 100px;")
@@ -62,6 +63,14 @@ class PriceTable extends Vue {
             this.$store.dispatch('save');
         } else {
             alert('価格履歴が一つも存在しません');
+        }
+    }
+
+    discard_and_save(): void {
+        const do_discard: boolean = confirm('破棄してもよろしいですか？');
+
+        if (do_discard) {
+            this.$store.dispatch('discard');
         }
     }
 }

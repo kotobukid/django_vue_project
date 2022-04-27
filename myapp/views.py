@@ -22,6 +22,23 @@ def fetch_prices(request):
     })
 
 
+def discard_price(request):
+    price_histories = PriceHistory.objects.all()
+
+    if price_histories.count() > 0:
+        price_histories[0].delete()
+
+    price_histories_next = PriceHistory.objects.all()
+
+    return JsonResponse({
+        "success": True,
+        'price_history': [{
+            "pk": p.pk,
+            "source": p.source
+        } for p in price_histories_next]
+    })
+
+
 def save_prices(request):
     if request.method == 'GET':
         return JsonResponse({

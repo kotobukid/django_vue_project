@@ -31,6 +31,20 @@ const root_store = new Vuex.Store({
                     alert('保存に失敗しました\n' + result.data.reason);
                 }
             });
+        },
+        discard(store): void {
+            axios.post('/discard_prices.json').then((result: AxiosResponse<{success: boolean, price_history: {pk: number, source: string}[]}>) => {
+                if (result.data.success) {
+                    alert('破棄しました');
+                    if (result.data.price_history.length > 0) {
+                        store.commit('replace-price-history', JSON.parse(result.data.price_history[0].source));
+                    } else {
+                        store.commit('replace-price-history', []);
+                    }
+                } else {
+                    alert('破棄に失敗しました');
+                }
+            })
         }
     },
     getters: {
