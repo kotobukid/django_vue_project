@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import hoge from './lib/sub';
+import MainApp from './components/main_app.vue';
 
 window.onload = () => {
-    console.log(document.getElementById('root'))
     const vm = new Vue({
-        data: () => {
-            return {message: 'Vueからこんにちは'}
-        }
+        components: {
+            'main-app': MainApp
+        },
     }).$mount('#root');
 }
