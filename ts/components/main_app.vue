@@ -54,5 +54,29 @@ export default MainApp;
     span.total {
         color: blue;
     }
+
+    .button {
+        border: 1px solid grey;
+        border-radius: 4px;
+        display: inline-block;
+        font-size: 1rem;
+        line-height: 1rem;
+        cursor: pointer;
+        text-decoration: none;
+        color: black;
+        background-color: white;
+        text-align: center;
+
+        &:active {
+            position: relative;
+            top: 1px;
+        }
+
+        margin: 0 3px 0 0;
+        padding: 4px;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
 }
 </style>
