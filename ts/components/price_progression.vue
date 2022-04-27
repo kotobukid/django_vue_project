@@ -1,6 +1,5 @@
 <template lang="pug">
     .price_progression
-        input(type="text" :value="message" @keyup="message_changed")
         .wrapper
             tax-calc(@register-snapshot="register_snapshot")
         .wrapper(style="width: 1610px;")
@@ -44,15 +43,6 @@ class PriceProgression extends Vue {
     get active_index(): number {
         return this.$store.getters['active_index'];
     };
-
-    get message(): string {
-        return this.$store.getters['message'];
-    }
-
-    message_changed(e: InputEvent): void {
-        // @ts-ignore
-        this.$store.commit('set-message', e.target.value);
-    }
 }
 
 export default PriceProgression;
