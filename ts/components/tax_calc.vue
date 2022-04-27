@@ -1,10 +1,9 @@
 <template lang="pug">
     .tax_calc
-        label
+        label.sequential
             span 価格:&nbsp;
             input(type="number" v-model.number="price")
-        br
-        label
+        label.sequential
             span 税率:&nbsp;
             input(type="number" v-model.number="tax_rate")
             span %
@@ -67,9 +66,12 @@ export default TaxCalc;
     background-color: #e5ffe9;
     padding: 10px;
 
-    label {
-        margin: 5px;
+    label.sequential {
+        margin: 5px 15px 5px 5px;
         display: inline-block;
+        &:last-child {
+            margin-right: 0;
+        }
     }
 
     .total {
