@@ -9,9 +9,7 @@
             input(type="number" v-model.number="tax_rate")
             span %
         .actions
-            a.button.reset_tax(href="#" @click.prevent="set_tax_rate(0)") リセット
-            a.button.reset_tax(href="#" @click.prevent="set_tax_rate(8)") 8%
-            a.button.reset_tax(href="#" @click.prevent="set_tax_rate(10)") 10%
+            a.button.reset_tax(href="#" v-for="tr in tax_rates" @click.prevent="set_tax_rate(tr.value)" v-text="tr.label")
         span.total
             span 計算結果:&nbsp;
             span(v-text="total")
@@ -31,6 +29,13 @@ import {PriceAndTax} from "../types";
 class TaxCalc extends Vue {
     price: number = 100;
     tax_rate: number = 10;
+
+    tax_rates: { label: string, value: number }[] = [
+        {label: 'リセット(0%)', value: 0},
+        {label: '8%', value: 8},
+        {label: '10%', value: 10},
+        {label: '50%', value: 50},
+    ];
 
     get total(): number {
         return calc_tax(this.price, this.tax_rate);
