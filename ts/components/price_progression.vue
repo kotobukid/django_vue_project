@@ -19,7 +19,7 @@ import {PriceAndTax} from "../types";
 })
 class PriceProgression extends Vue {
 
-    price_history: { tax_rate: number, price: number }[] = [];
+    price_history: PriceAndTax[] = [];
 
     register_snapshot(info: PriceAndTax): void {
         this.price_history.push(info);

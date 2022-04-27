@@ -29,9 +29,6 @@ import {PriceAndTax} from "../types";
     components: {}
 })
 class TaxCalc extends Vue {
-    // @Prop({default: ''})
-    // readonly message_from_parent!: string;
-
     price: number = 100;
     tax_rate: number = 10;
 

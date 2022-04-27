@@ -18,6 +18,7 @@ import {Prop, Vue} from "vue-property-decorator";
 import _ from 'lodash';
 import {calc_tax} from "../lib/sub";
 import PriceCircle from "./price_circle.vue";
+import {PriceAndTax} from "../types";
 
 @Component({
     components: {
@@ -26,10 +27,10 @@ import PriceCircle from "./price_circle.vue";
 })
 class SvgGraph extends Vue {
     @Prop({default: []})
-    readonly price_history!: {price: number, tax_rate: number}[];
+    readonly price_history!: PriceAndTax[];
 
     get price_sequence(): string {
-        return _.map(this.price_history, (h: { tax_rate: number, price: number }, index: number) => {
+        return _.map(this.price_history, (h: PriceAndTax, index: number) => {
             if (index === 0) {
                 return `M ${10 * index},${calc_tax(h.price, h.tax_rate)}`;
             } else {
