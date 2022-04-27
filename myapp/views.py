@@ -34,7 +34,11 @@ def save_prices(request):
         # for p in body["prices"]:
         #     print(p)
 
-        ph = PriceHistory()
+        histories = PriceHistory.objects.all()
+        if histories.count() > 0:
+            ph = histories[0]
+        else:
+            ph = PriceHistory()
         ph.source = body["prices"]
         ph.save()
 
