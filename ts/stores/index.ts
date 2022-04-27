@@ -1,5 +1,6 @@
 import Vuex from 'vuex';
 import {PriceAndTax} from "../types";
+import axios, {AxiosResponse} from 'axios';
 
 const root_store = new Vuex.Store({
     state: {
@@ -12,6 +13,18 @@ const root_store = new Vuex.Store({
         },
         'set-active-index'(state, index: number): void {
             state.active_index = index;
+        }
+    },
+    actions: {
+        save(store): void {
+            axios.post('/save_prices.json', {prices: store.state.price_history}).then((result: AxiosResponse<{ success: boolean }>) => {
+                console.log(result.data.success);
+                if (result.data.success) {
+                    alert('保存しました');
+                } else {
+                    alert('保存に失敗しました');
+                }
+            });
         }
     },
     getters: {

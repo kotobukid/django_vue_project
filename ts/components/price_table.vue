@@ -1,5 +1,7 @@
 <template lang="pug">
     .outer_frame(style="max-height: 400px;")
+        .actions
+            a.button.save(href="#" @click.prevent="save") 保存
         table
             colgroup
                 col(style="width: 100px;")
@@ -53,6 +55,14 @@ class PriceTable extends Vue {
 
     make_active(index: number): void {
         this.$store.commit('set-active-index', index);
+    }
+
+    save(): void {
+        if (this.price_history.length > 0) {
+            this.$store.dispatch('save');
+        } else {
+            alert('価格履歴が一つも存在しません');
+        }
     }
 }
 
