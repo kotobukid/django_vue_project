@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const {VueLoaderPlugin} = require('vue-loader');
 
 const entry = {
+    'static/javascripts/pages/index': './ts/index.ts',
 };
 
 module.exports = {

@@ -21,6 +21,7 @@
     "newLine": "lf"
   },
   "files": [
+    "./ts/index.ts"
   ],
   "include": [
     "./ts/**/*.ts",
