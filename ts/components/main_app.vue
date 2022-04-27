@@ -1,8 +1,14 @@
 <template lang="pug">
     .main_app
-        span.message {{ message_from_parent }}
+        label
+            span 価格:&nbsp;
+            input(type="number" v-model.number="price")
         br
-        span.message {{ message_from_parent }}
+        label
+            span 税率:&nbsp;
+            input(type="number" v-model.number="tax_rate")
+        hr
+        span.total(v-text="Math.round(price * ((100 + tax_rate) / 100))")
 </template>
 
 <script lang="ts">
@@ -13,8 +19,11 @@ import {Prop, Vue} from "vue-property-decorator";
     components: {}
 })
 class MainApp extends Vue {
-    @Prop({default: ''})
-    readonly message_from_parent!: string;
+    // @Prop({default: ''})
+    // readonly message_from_parent!: string;
+
+    price: number = 100;
+    tax_rate: number = 10;
 }
 
 export default MainApp;
@@ -23,8 +32,10 @@ export default MainApp;
 
 <style scoped lang="less">
 .main_app {
-    span.message {
-        font-size: 2rem;
+    font-size: 2rem;
+
+    input[type="number"] {
+        font-size: 2.5rem;
     }
 }
 </style>
