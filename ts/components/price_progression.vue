@@ -35,10 +35,12 @@ import {PriceAndTax} from "../types";
 })
 class PriceProgression extends Vue {
 
-    price_history: PriceAndTax[] = [];
+    get price_history(): PriceAndTax[] {
+        return this.$store.getters['price_history'];
+    };
 
     register_snapshot(info: PriceAndTax): void {
-        this.price_history.push(info);
+        this.$store.commit('append-price-history', info);
     }
 
     active_index: number = -1;
