@@ -20,5 +20,6 @@ from myapp import views as ma_views
 urlpatterns = [
     path('', ma_views.index),
     path('save_prices.json', ma_views.save_prices),
+    path('fetch_prices.json', ma_views.fetch_prices),
     path('admin/', admin.site.urls),
 ]

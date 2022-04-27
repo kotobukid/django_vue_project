@@ -11,6 +11,17 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
+def fetch_prices(request):
+    price_histories = PriceHistory.objects.all()
+
+    return JsonResponse({
+        'price_history': [{
+            "pk": p.pk,
+            "source": p.source
+        } for p in price_histories]
+    })
+
+
 def save_prices(request):
     if request.method == 'GET':
         return JsonResponse({
