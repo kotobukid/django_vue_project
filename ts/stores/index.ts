@@ -20,7 +20,7 @@ const root_store = new Vuex.Store({
     },
     actions: {
         save(store): void {
-            axios.post('/save_prices.json', {prices: store.state.price_history}).then((result: AxiosResponse<{ success: boolean, reason: string }>) => {
+            axios.post('/save_prices.json', {prices: JSON.stringify(store.state.price_history)}).then((result: AxiosResponse<{ success: boolean, reason: string }>) => {
                 console.log(result.data.success);
                 if (result.data.success) {
                     alert('保存しました');
